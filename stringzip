@@ -1,0 +1,64 @@
+Enter file contents here
+// Stringzip.cpp : 定义控制台应用程序的入口点。
+//
+
+#include "stdafx.h"
+#include<iostream>
+
+using namespace std;
+class solution{
+
+public:void stringzip(const char* pInputStr,long Inputlen,char* pOutputStr)//be public
+	{
+		int count=1;
+		int j=0;
+		const char* p=pInputStr;
+		char* q=pOutputStr;
+		for(int i=0;i<strlen(p);i++)//strlen not size of
+		{
+			if(p[i]==p[i+1])//here p[i]!='\0' maybe not used
+			{
+				count++;
+			}
+			else
+			{
+				if(count>1)
+				{q[j]= count+'0';//turn into char
+				q[++j]=p[i];
+				j++;
+				count=1;
+				}
+				else
+					{
+						q[j]=p[i];
+						j++;
+				}
+			}
+
+		}
+		 q[j] = '\0';
+	}
+};
+int main()
+{
+	char A[]="aaabbc";
+	char B[]="abababa";
+	char C[]="huchenleiwoaini";
+	char a[100];
+	char b[100];
+	char c[100];
+	solution k;
+	k.stringzip(A,sizeof(A),a);
+	k.stringzip(B,sizeof(B),b);
+	k.stringzip(C,sizeof(C),c);
+	cout<<a<<endl;
+	cout<<b<<endl;
+	cout<<c<<endl;
+	return 0;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	return 0;
+}
+
