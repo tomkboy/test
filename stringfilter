@@ -1,0 +1,62 @@
+Enter file contents here
+// stringfilter.cpp : 定义控制台应用程序的入口点。
+//
+
+#include "stdafx.h"
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void stringfilter(const char* pin,long len,char* pout)
+{
+	int j=0;
+	vector<bool> vis(256,false);
+	for(int i=0;i<strlen(pin);i++)
+	{
+		if(vis[pin[i]]==true)
+			continue;
+		vis[pin[i]]=true;
+		pout[j++]=pin[i];
+
+	}
+	pout[j]='\0';
+}
+void stringfilter1(const char* pin,long len,char* pout)
+{
+	bool state[256]={false};
+	for(int i=0;i<len;i++)
+	{
+		if(state[*pin]==false)
+		{
+			state[*pin]=true;
+			*pout=*pin;
+			pin++;
+			pout++;
+		}
+		else
+		{
+			pin++;
+		}
+	}
+	*pout='\0';
+}
+int main()
+{
+	char A[]="aaabbbccc";
+	char B[]="ababcdb";
+	char C[]="iloveu";
+	char a[100];
+	char b[100];
+	char c[100];
+	stringfilter1(A,strlen(A),a);
+	stringfilter(B,strlen(B),b);
+	stringfilter(C,strlen(C),c);
+	cout<<a<<endl;
+	cout<<b<<endl;
+	cout<<c<<endl;
+}
+int _tmain(int argc, _TCHAR* argv[])
+{
+	return 0;
+}
+
